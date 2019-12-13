@@ -1,0 +1,10 @@
+language: csharp
+solution: ViruZLauncher.sln
+
+mono: latest
+dotnet: 2.1.3
+
+install:
+  - dotnet restore
+script:
+  - dotnet build

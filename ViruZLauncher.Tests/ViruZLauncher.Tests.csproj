@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net462</TargetFramework>
+    <IsPackable>false</IsPackable>
+    <Prefer32bit>false</Prefer32bit>
+    <AssemblyName>ViruZLauncher.Tests</AssemblyName>
+    <RootNamespace>ViruZLauncher.Tests</RootNamespace>
+    <ApplicationIcon>viruz_ico_black.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ViruZLauncher.Launcher\ViruZLauncher.Launcher.csproj" />
+  </ItemGroup>
+
+  <Import Project="..\props\netfx-mono.props" />
+
+</Project>
