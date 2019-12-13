@@ -398,14 +398,23 @@ namespace ViruZLauncher.Launcher.Interface
 
 			if (isInProgress)
 			{
+				this.MenuChangeName.Sensitive = false;
 				this.MenuRepairItem.Sensitive = false;
 				this.MenuReinstallItem.Sensitive = false;
 			}
 			else
 			{
+				this.MenuChangeName.Sensitive = true;
 				this.MenuRepairItem.Sensitive = true;
 				this.MenuReinstallItem.Sensitive = true;
 			}
+		}
+
+		private void OnMenuChangeNameActivated(object sender, EventArgs e)
+		{
+			// Or specify a specific name in the current dir
+			var MyIni = new IniFile("ViruZ.ini");
+			MyIni.Write("Name", "SigWar trocado", "Launcher");
 		}
 
 		/// <summary>

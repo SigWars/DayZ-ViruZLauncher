@@ -42,6 +42,7 @@ namespace ViruZLauncher.Launcher.Interface
 	/// </summary>
 	public partial class MainWindow
 	{
+		[UIElement] private readonly ImageMenuItem MenuChangeName;
 		[UIElement] private readonly ImageMenuItem MenuRepairItem;
 		[UIElement] private readonly ImageMenuItem MenuReinstallItem;
 		[UIElement] private readonly ImageMenuItem MenuAboutItem;
@@ -77,6 +78,7 @@ namespace ViruZLauncher.Launcher.Interface
 		private void BindUIEvents()
 		{
 			this.DeleteEvent += OnDeleteEvent;
+			this.MenuChangeName.Activated += OnMenuChangeNameActivated;
 			this.MenuReinstallItem.Activated += OnReinstallGameActionActivated;
 			this.MenuRepairItem.Activated += OnMenuRepairItemActivated;
 			this.MenuAboutItem.Activated += OnMenuAboutItemActivated;

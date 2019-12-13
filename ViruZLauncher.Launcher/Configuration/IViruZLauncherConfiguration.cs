@@ -56,10 +56,22 @@ namespace ViruZLauncher.Launcher.Configuration
 		string GameName { get; set; }
 
 		/// <summary>
+		/// Gets or sets the name of the player.
+		/// </summary>
+		[Option(Alias = "Game.PlayerName", DefaultValue = "ViruZPlayer")]
+		string PlayerName { get; set; }
+
+		/// <summary>
 		/// Gets or sets the path to the game's executable, relative to the launcher.
 		/// </summary>
 		[Option(Alias = "Game.ExecutablePath", DefaultValue = "ViruZ.exe")]
 		string ExecutablePath { get; set; }
+
+		/// <summary>
+		/// Gets or sets the path to the game's executable, relative to the launcher.
+		/// </summary>
+		[Option(Alias = "Game.CommandLine", DefaultValue = "-Nofilepatching")]
+		string CommandLine { get; set; }
 
 		// Remote section
 		// ...

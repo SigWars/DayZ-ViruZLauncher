@@ -9,62 +9,14 @@
     <property name="transient_for">MainWindow</property>
     <property name="attached_to">MainWindow</property>
     <property name="program_name">ViruZLauncher</property>
-    <property name="version">2.x</property>
-    <property name="copyright" translatable="yes">Jarl Gullberg 2018</property>
-    <property name="website">https://github.com/Nihlus/ViruZLauncher</property>
-    <property name="website_label" translatable="yes">ViruZLauncher on Github</property>
-    <property name="authors">Jarl Gullberg</property>
-    <property name="translator_credits" translatable="yes">aaronnsbe
-Alyona Druzhinina
-Andra
-ArthurR
-Austin McGowan
-bluewinter
-Bruno Briante
-Clash Royal
-Deventico
-Dremski
-Henrique Cezar (drakkoslayer)
-Henrique Cezar (killchainer)
-Isaideureka
-Josef Vyhnánek
-jznsamuel
-Krystian Pozaroszczyk
-LavransB
-LEE Matthew
-lennert vanriel
-LesserCure
-Marcelo Coutinho
-Md Rokonuazzaman Rifat
-melonmanchan
-Merry Grim
-montlikadani
-NeHoMaR
-Nick Jordan
-Onur Besli
-Project Pairidaeza
-Radosłav Waśko
-Ramon Marrero
-rayts5
-rosatravels
-Ryal
-SteONeill
-Sturalke
-Team TriFormine
-Timberwolf581
-Viktor Zoutman
-vlf
-xtapolapaketl
-Yuri Belleri
-zaher99
-Zectric F.
-Александр Минкин
-Калоян Георгиев
-مجد حبيب أسعد 
-
-</property>
+    <property name="version">1.6.0.2</property>
+    <property name="copyright" translatable="yes">SigWar</property>
+    <property name="website">facebook.com/ViruZ</property>
+    <property name="website_label" translatable="yes">ViruZLauncher on Facebook</property>
+    <property name="authors">SigWar</property>
+    <property name="translator_credits" translatable="yes">SigWar
+Mateuus</property>
     <property name="logo_icon_name">image-missing</property>
-    <property name="license_type">gpl-3-0</property>
     <child internal-child="vbox">
       <object class="GtkBox" id="aboutdialog-vbox1">
         <property name="can_focus">False</property>
@@ -88,26 +40,10 @@ Zectric F.
       </object>
     </child>
   </object>
-  <object class="GtkImage" id="image1">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="stock">gtk-convert</property>
-  </object>
-  <object class="GtkImage" id="image2">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="stock">gtk-refresh</property>
-  </object>
-  <object class="GtkImage" id="image3">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="stock">gtk-refresh</property>
-  </object>
   <object class="GtkWindow" id="MainWindow">
     <property name="width_request">745</property>
     <property name="height_request">415</property>
     <property name="can_focus">False</property>
-    <property name="title" translatable="yes">ViruZLauncher</property>
     <property name="resizable">False</property>
     <property name="default_width">745</property>
     <property name="default_height">415</property>
@@ -350,6 +286,127 @@ Zectric F.
             <property name="pack_type">end</property>
             <property name="position">4</property>
           </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkImage" id="image1">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-convert</property>
+  </object>
+  <object class="GtkImage" id="image2">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-refresh</property>
+  </object>
+  <object class="GtkImage" id="image3">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-refresh</property>
+  </object>
+  <object class="GtkWindow" id="TrocarNomeWindows">
+    <property name="can_focus">False</property>
+    <property name="resizable">False</property>
+    <child>
+      <object class="GtkBox" id="box2">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkBox" id="box3">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkImage" id="imageChangename">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="margin_bottom">88</property>
+                <property name="stock">gtk-missing-image</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="ChangeNameLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="margin_bottom">12</property>
+                <property name="label" translatable="yes">Change Name</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkEntry" id="CampoNome">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="max_length">20</property>
+            <property name="invisible_char">●</property>
+            <property name="text" translatable="yes">ViruZPlayer</property>
+            <property name="xalign">0.5</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButtonBox" id="buttonbox1">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="spacing">180</property>
+            <property name="layout_style">center</property>
+            <child>
+              <object class="GtkButton" id="BotaoTrocar">
+                <property name="label" translatable="yes">Change</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="BotaoCancela">
+                <property name="label" translatable="yes">Cancel</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+        <child>
+          <placeholder/>
         </child>
       </object>
     </child>
