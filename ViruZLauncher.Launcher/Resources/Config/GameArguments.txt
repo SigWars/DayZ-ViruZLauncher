@@ -1,0 +1,6 @@
+# This file contains all the arguments passed to the game executable on startup.
+# Lines beginning with a hash character (#) are ignored and considered comments.
+# Everything else is passed line-by-line to the game executable on startup.
+# Multiple arguments can be on the same line in this file.
+# Each line will have a space appended at the end when passed to the game executable.
+
