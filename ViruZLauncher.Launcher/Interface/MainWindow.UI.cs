@@ -78,7 +78,7 @@ namespace ViruZLauncher.Launcher.Interface
 		private void BindUIEvents()
 		{
 			this.DeleteEvent += OnDeleteEvent;
-			this.MenuChangeName.Activated += OnMenuChangeNameActivated;
+			this.MenuChangeName.Activated += OnMenuChangeNameActivated; // VZUPDATE
 			this.MenuReinstallItem.Activated += OnReinstallGameActionActivated;
 			this.MenuRepairItem.Activated += OnMenuRepairItemActivated;
 			this.MenuAboutItem.Activated += OnMenuAboutItemActivated;

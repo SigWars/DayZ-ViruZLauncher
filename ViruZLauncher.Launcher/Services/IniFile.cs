@@ -25,6 +25,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 
+// VZUPDATE
 namespace ViruZLauncher.Launcher
 {
     public class IniFile // revision 11

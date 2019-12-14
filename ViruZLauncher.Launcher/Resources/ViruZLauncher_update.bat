@@ -2,7 +2,7 @@
 :: ViruZLauncher_update.bat
 ::
 ::  Author:
-::       Jarl Gullberg <jarl.gullberg@gmail.com>
+::       SigWar
 ::
 ::  Copyright (c) 2016 Jarl Gullberg
 ::

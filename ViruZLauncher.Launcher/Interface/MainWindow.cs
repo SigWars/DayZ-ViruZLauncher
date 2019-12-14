@@ -400,7 +400,7 @@ namespace ViruZLauncher.Launcher.Interface
 
 			if (isInProgress)
 			{
-				this.MenuChangeName.Sensitive = false;
+				this.MenuChangeName.Sensitive = false; //VZUPDATE
 				this.MenuRepairItem.Sensitive = false;
 				this.MenuReinstallItem.Sensitive = false;
 			}
@@ -427,6 +427,7 @@ namespace ViruZLauncher.Launcher.Interface
 			return "";
 		};
 
+		// ViruZ Change Name VZUPDATE
 		private void OnMenuChangeNameActivated(object sender, EventArgs e)
 		{
 			// Or specify a specific name in the current dir
