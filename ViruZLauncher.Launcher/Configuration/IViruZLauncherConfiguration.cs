@@ -37,7 +37,7 @@ namespace ViruZLauncher.Launcher.Configuration
 		/// <summary>
 		/// Gets or sets the address where the changelog is hosted.
 		/// </summary>
-		[Option(Alias = "Launcher.ChangelogAddress", DefaultValue = "http://127.0.0.1/Update/news.html")]
+		[Option(Alias = "Launcher.ChangelogAddress", DefaultValue = "http://142.44.199.16/Launcher/news.html")]
 		Uri ChangelogAddress { get; set; }
 
 		/// <summary>
@@ -56,22 +56,16 @@ namespace ViruZLauncher.Launcher.Configuration
 		string GameName { get; set; }
 
 		/// <summary>
-		/// Gets or sets the name of the player.
-		/// </summary>
-		[Option(Alias = "Game.PlayerName", DefaultValue = "ViruZPlayer")]
-		string PlayerName { get; set; }
-
-		/// <summary>
 		/// Gets or sets the path to the game's executable, relative to the launcher.
 		/// </summary>
-		[Option(Alias = "Game.ExecutablePath", DefaultValue = "ViruZ.exe")]
+		[Option(Alias = "Game.ExecutablePath", DefaultValue = "SmartSteamLoader.exe")]
 		string ExecutablePath { get; set; }
 
 		/// <summary>
-		/// Gets or sets the path to the game's executable, relative to the launcher.
+		/// Gets or sets the path to the game's INI, relative to the launcher.
 		/// </summary>
-		[Option(Alias = "Game.CommandLine", DefaultValue = "-Nofilepatching")]
-		string CommandLine { get; set; }
+		[Option(Alias = "Game.IniPath", DefaultValue = "ViruZ.ini")]
+		string IniPath { get; set; }
 
 		// Remote section
 		// ...
@@ -79,7 +73,7 @@ namespace ViruZLauncher.Launcher.Configuration
 		/// <summary>
 		/// Gets or sets the address of the remote server.
 		/// </summary>
-		[Option(Alias = "Remote.Address", DefaultValue = "ftp://127.0.0.1")]
+		[Option(Alias = "Remote.Address", DefaultValue = "ftp://142.44.199.16")]
 		Uri RemoteAddress { get; set; }
 
 		/// <summary>

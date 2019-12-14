@@ -56,11 +56,20 @@ namespace ViruZLauncher.Launcher.Services
 			{
 				using (var sw = new StreamWriter(fs))
 				{
+					// ViruZChange
+					/*
 					sw.WriteLine("# This file contains all the arguments passed to the game executable on startup.");
 					sw.WriteLine("# Lines beginning with a hash character (#) are ignored and considered comments.");
 					sw.WriteLine("# Everything else is passed line-by-line to the game executable on startup.");
 					sw.WriteLine("# Multiple arguments can be on the same line in this file.");
 					sw.WriteLine("# Each line will have a space appended at the end when passed to the game executable.");
+					sw.WriteLine(string.Empty);
+					*/
+					sw.WriteLine("ViruZ.ini");
+					sw.WriteLine("-connect=viruzsa.servegame.com");
+					sw.WriteLine("-port=2302");
+					sw.WriteLine("-noFilePatching");
+					sw.WriteLine("-mod=Mods\\@ViruZBase;Mods\\@CF;Mods\\@VPPNotifications;Mods\\@VPPAdminTools;Mods\\@ExpansionChat;Mods\\@ExpansionNotifications;Mods\\@KillFeed;Mods\\@Trade;Mods\\@VanillaPPMap;Mods\\@SSM;Mods\\@ViruZExtraAddons;Mods\\@ViruZCars;Mods\\@ViruZWeapons;Mods\\@Summer");
 					sw.WriteLine(string.Empty);
 				}
 			}

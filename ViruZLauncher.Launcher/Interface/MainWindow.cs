@@ -22,7 +22,9 @@
 
 using System;
 using System.Diagnostics;
+using System.IO;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 using Gdk;
 using GLib;
 using Gtk;
@@ -118,7 +120,7 @@ namespace ViruZLauncher.Launcher.Interface
 			SetLauncherMode(ELauncherMode.Inactive, false);
 
 			// Set the window title
-			this.Title = LocalizationCatalog.GetString("ViruZLauncher - {0}", this.Configuration.GameName);
+			this.Title = LocalizationCatalog.GetString("{0}", this.Configuration.GameName);
 			this.StatusLabel.Text = LocalizationCatalog.GetString("Idle");
 		}
 
@@ -410,11 +412,37 @@ namespace ViruZLauncher.Launcher.Interface
 			}
 		}
 
+		InputBoxValidation validation = delegate(string val)
+		{
+			if (val == "")
+			{
+				return "Value cannot be empty.";
+			}
+
+			/*if (!(new Regex(@"^[a-zA-Z0-9_\-\.]+@[a-zA-Z0-9_\-\.]+\.[a-zA-Z]{2,}$")).IsMatch(val))
+			{
+				return "Email address is not valid.";
+			}*/
+
+			return "";
+		};
+
 		private void OnMenuChangeNameActivated(object sender, EventArgs e)
 		{
 			// Or specify a specific name in the current dir
-			var MyIni = new IniFile("ViruZ.ini");
-			MyIni.Write("Name", "SigWar trocado", "Launcher");
+			string value = "ViruZ Player";
+			if (InputBox.Show("Change Name", "Enter the new name:", ref value, validation) == DialogResult.OK)
+			{
+				var myIniFile = System.IO.Path.Combine(DirectoryHelpers.GetLocalGameDirectory(), Configuration.IniPath);
+				if (!File.Exists(myIniFile))
+				{
+					throw new FileNotFoundException($"file ini at path (\"{myIniFile}\") not found.");
+				}
+				var myIniDir = System.IO.Path.GetDirectoryName(myIniFile) ?? DirectoryHelpers.GetLocalLauncherDirectory();
+				var MyIni = new IniFile(myIniFile.ToString());
+				MyIni.Write("CommandLine", " -name=" + value, "Launcher");
+				MessageBox.Show("Name changed to " + value);
+			}
 		}
 
 		/// <summary>
