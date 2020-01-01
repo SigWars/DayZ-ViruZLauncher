@@ -68,7 +68,44 @@ namespace ViruZLauncher.Launcher.Services
 		/// <returns>The version.</returns>
 		public Version GetLocalLauncherVersion()
 		{
-			return GetType().Assembly.GetName().Version;
+			try
+			{
+				var rawLauncherPath = Path.Combine(DirectoryHelpers.GetLocalLauncherDirectory(), "LauncherVersion.txt");
+				var locVersion = File.ReadAllText(rawLauncherPath);
+
+				if (Version.TryParse(locVersion, out var launcherVersion))
+				{
+					return launcherVersion;
+				}
+
+				Log.Warn("Could not parse local launcher version. Contents: " + locVersion);
+				return new Version("0.0.0");
+			}
+			catch (IOException ioex)
+			{
+				Log.Warn("Could not read local game version (IOException): " + ioex.Message);
+				return null;
+			}
+
+			// return GetType().Assembly.GetName().Version; // Original unique line
+			/*
+			var localversion = Path.Combine(DirectoryHelpers.GetLocalGameDirectory(), "LauncherVersion.txt");
+			if (!File.Exists(localversion))
+			{
+				throw new FileNotFoundException($"Launcher version at path (\"{localversion}\") not found.");
+			}
+
+			var remoteVersion = ReadRemoteFile(localversion).RemoveLineSeparatorsAndNulls();
+
+			if (Version.TryParse(remoteVersion, out var version))
+			{
+				Log.Warn("Local version is " + version);
+				return version;
+			}
+
+			Log.Warn("Failed to parse the local game version. Using the default of 0.0.0 instead.");
+			// return new Version("0.0.0");
+			*/
 		}
 	}
 }

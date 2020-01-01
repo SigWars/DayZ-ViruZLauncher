@@ -49,7 +49,8 @@ namespace ViruZLauncher.Launcher.Services
 			// Initialize the game arguments file, if needed
 			if (File.Exists(DirectoryHelpers.GetGameArgumentsPath()))
 			{
-				return;
+				File.Delete(DirectoryHelpers.GetGameArgumentsPath());
+				//return;
 			}
 
 			using (var fs = File.Create(DirectoryHelpers.GetGameArgumentsPath()))
@@ -66,10 +67,24 @@ namespace ViruZLauncher.Launcher.Services
 					sw.WriteLine(string.Empty);
 					*/
 					sw.WriteLine("ViruZ.ini");
-					sw.WriteLine("-connect=viruzsa.servegame.com");
+					sw.WriteLine("-connect=viruzconnect.servegame.com");
 					sw.WriteLine("-port=2302");
 					sw.WriteLine("-noFilePatching");
-					sw.WriteLine("-mod=Mods\\@ViruZBase;Mods\\@CF;Mods\\@VPPNotifications;Mods\\@VPPAdminTools;Mods\\@ExpansionChat;Mods\\@ExpansionNotifications;Mods\\@KillFeed;Mods\\@Trade;Mods\\@VanillaPPMap;Mods\\@SSM;Mods\\@ViruZExtraAddons;Mods\\@ViruZCars;Mods\\@ViruZWeapons;Mods\\@Summer");
+					sw.WriteLine("-mod=Mods\\@ViruZBase;" +
+								"Mods\\@CF;" +
+								"Mods\\@VPPNotifications;" +
+								"Mods\\@VPPAdminTools;" +
+								"Mods\\@ExpansionChat;" +
+								"Mods\\@ExpansionNotifications;" +
+								"Mods\\@KillFeed;" +
+								"Mods\\@Trade;" +
+								"Mods\\@VanillaPPMap;" +
+								"Mods\\@SSM;" +
+								"Mods\\@ViruZBuild;" +
+								"Mods\\@ViruZExtraAddons;" +
+								"Mods\\@ViruZCars;" +
+								"Mods\\@ViruZWeapons;" +
+								"Mods\\@Summer");
 					sw.WriteLine(string.Empty);
 				}
 			}

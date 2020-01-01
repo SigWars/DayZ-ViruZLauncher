@@ -818,7 +818,7 @@ namespace ViruZLauncher.Launcher.Handlers.Protocols.Manifest
 		/// <param name="totalBytes">Total bytes.</param>
 		protected virtual string GetDownloadProgressBarMessage(string filename, long downloadedBytes, long totalBytes)
 		{
-			return LocalizationCatalog.GetString("Downloading {0}: {1} out of {2}", filename, downloadedBytes, totalBytes);
+			return LocalizationCatalog.GetString("Downloading {0}: {1}Mb out of {2}Mb", filename, downloadedBytes / 1000000, totalBytes / 1000000);
 		}
 	}
 }

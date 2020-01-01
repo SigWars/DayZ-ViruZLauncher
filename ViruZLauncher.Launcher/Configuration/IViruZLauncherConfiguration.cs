@@ -37,7 +37,7 @@ namespace ViruZLauncher.Launcher.Configuration
 		/// <summary>
 		/// Gets or sets the address where the changelog is hosted.
 		/// </summary>
-		[Option(Alias = "Launcher.ChangelogAddress", DefaultValue = "http://142.44.199.16/Launcher/news.html")]
+		[Option(Alias = "Launcher.ChangelogAddress", DefaultValue = "http://viruzsa.servegame.com/Launcher/news.html")]
 		Uri ChangelogAddress { get; set; }
 
 		/// <summary>
@@ -73,19 +73,19 @@ namespace ViruZLauncher.Launcher.Configuration
 		/// <summary>
 		/// Gets or sets the address of the remote server.
 		/// </summary>
-		[Option(Alias = "Remote.Address", DefaultValue = "ftp://142.44.199.16")]
+		[Option(Alias = "Remote.Address", DefaultValue = "ftp://viruzsa.servegame.com")]
 		Uri RemoteAddress { get; set; }
 
 		/// <summary>
 		/// Gets or sets the username to use when authenticating with the remote server.
 		/// </summary>
-		[Option(Alias = "Remote.Username", DefaultValue = "viruzlauncher")]
+		[Option(Alias = "Remote.Username", DefaultValue = "Anonymous")]
 		string RemoteUsername { get; set; }
 
 		/// <summary>
 		/// Gets or sets the password to use when authenticating with the remote server.
 		/// </summary>
-		[Option(Alias = "Remote.Password", DefaultValue = "viruzlauncher")]
+		[Option(Alias = "Remote.Password", DefaultValue = "")]
 		string RemotePassword { get; set; }
 
 		/// <summary>
