@@ -53,6 +53,7 @@ namespace ViruZLauncher.Launcher
 		/// <summary>
 		/// The main entry point for the application.
 		/// </summary>
+		[Obsolete]
 		private static void Main()
 		{
 			// Bind any unhandled exceptions in the main thread so that they are logged.
@@ -84,6 +85,9 @@ namespace ViruZLauncher.Launcher
 
 			var win = MainWindow.Create();
 			win.Show();
+			win.SetPosition(WindowPosition.CenterAlways);
+			Gdk.Color col = new Gdk.Color(0, 0, 0);
+			win.ModifyBg(StateType.Normal, col);
 
 			Timeout.Add
 			(

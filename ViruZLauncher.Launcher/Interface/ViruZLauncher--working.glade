@@ -1,6 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <!-- interface-requires gtk+ 3.12 -->
+  <object class="GtkAboutDialog" id="MainAboutDialog">
+    <property name="can_focus">False</property>
+    <property name="resizable">False</property>
+    <property name="window_position">center-on-parent</property>
+    <property name="type_hint">dialog</property>
+    <property name="transient_for">MainWindow</property>
+    <property name="attached_to">MainWindow</property>
+    <property name="program_name">ViruZLauncher</property>
+    <property name="copyright" translatable="yes">SigWar</property>
+    <property name="website">http://www.facebook.com/ViruzBr/</property>
+    <property name="authors">SigWar</property>
+    <property name="translator_credits" translatable="yes">SigWar
+Mateuus</property>
+    <property name="logo_icon_name">image-missing</property>
+    <child internal-child="vbox">
+      <object class="GtkBox" id="aboutdialog-vbox1">
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox" id="aboutdialog-action_area1">
+            <property name="can_focus">False</property>
+            <property name="layout_style">end</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="pack_type">end</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+      </object>
+    </child>
+  </object>
   <object class="GtkWindow" id="MainWindow">
     <property name="width_request">745</property>
     <property name="height_request">415</property>
@@ -98,10 +135,37 @@
           <object class="GtkAlignment" id="ContentAlignment">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="top_padding">6</property>
+            <property name="left_padding">6</property>
+            <property name="right_padding">6</property>
             <child>
               <object class="GtkBox" id="ContentBox">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <child>
+                  <object class="GtkScrolledWindow" id="ChangelogScrolledWindow">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="shadow_type">in</property>
+                    <property name="min_content_width">160</property>
+                    <child>
+                      <object class="GtkTextView" id="ChangelogTextView">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="editable">False</property>
+                        <property name="wrap_mode">word-char</property>
+                        <property name="justification">center</property>
+                        <property name="cursor_visible">False</property>
+                        <property name="accepts_tab">False</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
                 <child>
                   <object class="GtkAlignment" id="BannerAlignment">
                     <property name="visible">True</property>
@@ -133,16 +197,17 @@
           <object class="GtkAlignment" id="ControlAlignment">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="top_padding">6</property>
             <property name="bottom_padding">6</property>
             <property name="left_padding">6</property>
             <property name="right_padding">6</property>
             <child>
-              <object class="GtkBox" id="Controls">
+              <object class="GtkBox" id="ControlBox">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="spacing">10</property>
+                <property name="spacing">6</property>
                 <child>
-                  <object class="GtkAlignment" id="ProgressBarAlignment1">
+                  <object class="GtkAlignment" id="ProgressBarAlignment">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <child>
@@ -157,54 +222,22 @@
                   <packing>
                     <property name="expand">True</property>
                     <property name="fill">True</property>
+                    <property name="pack_type">end</property>
                     <property name="position">0</property>
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkBox" id="ControlBox">
+                  <object class="GtkAlignment" id="MainButtonAlignment">
+                    <property name="width_request">100</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="orientation">vertical</property>
-                    <property name="spacing">2</property>
                     <child>
-                      <object class="GtkAlignment" id="MainButtonAlignment">
-                        <property name="width_request">100</property>
+                      <object class="GtkButton" id="MainButton">
+                        <property name="label" translatable="yes">button</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <child>
-                          <object class="GtkButton" id="MainButton">
-                            <property name="label" translatable="yes">button</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">True</property>
-                          </object>
-                        </child>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
                       </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="pack_type">end</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkAlignment" id="ChangeNamealinhament">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <child>
-                          <object class="GtkButton" id="NewChangeName">
-                            <property name="label" translatable="yes">Change Name</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">True</property>
-                          </object>
-                        </child>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">2</property>
-                      </packing>
                     </child>
                   </object>
                   <packing>
@@ -212,6 +245,19 @@
                     <property name="fill">True</property>
                     <property name="pack_type">end</property>
                     <property name="position">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="NewChangeName">
+                    <property name="label" translatable="yes">Change Name</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">2</property>
                   </packing>
                 </child>
               </object>
@@ -228,8 +274,7 @@
           <object class="GtkAlignment" id="StatusAlignment">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="top_padding">8</property>
-            <property name="bottom_padding">3</property>
+            <property name="top_padding">12</property>
             <property name="left_padding">6</property>
             <property name="right_padding">6</property>
             <child>
@@ -245,58 +290,21 @@
             <property name="expand">False</property>
             <property name="fill">True</property>
             <property name="pack_type">end</property>
-            <property name="position">3</property>
+            <property name="position">4</property>
           </packing>
         </child>
       </object>
     </child>
-  </object>
-  <object class="GtkAboutDialog" id="MainAboutDialog">
-    <property name="can_focus">False</property>
-    <property name="resizable">False</property>
-    <property name="window_position">center-on-parent</property>
-    <property name="type_hint">dialog</property>
-    <property name="transient_for">MainWindow</property>
-    <property name="attached_to">MainWindow</property>
-    <property name="program_name">ViruZLauncher</property>
-    <property name="copyright" translatable="yes">SigWar</property>
-    <property name="website">http://www.facebook.com/ViruzBr/</property>
-    <property name="authors">SigWar</property>
-    <property name="translator_credits" translatable="yes">SigWar
-Mateuus</property>
-    <property name="logo_icon_name">image-missing</property>
-    <child internal-child="vbox">
-      <object class="GtkBox" id="aboutdialog-vbox1">
-        <property name="can_focus">False</property>
-        <property name="orientation">vertical</property>
-        <property name="spacing">2</property>
-        <child internal-child="action_area">
-          <object class="GtkButtonBox" id="aboutdialog-action_area1">
-            <property name="can_focus">False</property>
-            <property name="layout_style">end</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">False</property>
-            <property name="pack_type">end</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-      </object>
-    </child>
-  </object>
-  <object class="GtkImage" id="image1">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="stock">gtk-convert</property>
   </object>
   <object class="GtkImage" id="image2">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="stock">gtk-refresh</property>
+  </object>
+  <object class="GtkImage" id="image1">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-convert</property>
   </object>
   <object class="GtkImage" id="image3">
     <property name="visible">True</property>

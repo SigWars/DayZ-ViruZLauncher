@@ -99,6 +99,7 @@ namespace ViruZLauncher.Launcher.Interface
 		/// </summary>
 		/// <param name="builder">The UI builder.</param>
 		/// <param name="handle">The native handle of the window.</param>
+		[Obsolete]
 		private MainWindow(Builder builder, IntPtr handle)
 			: base(handle)
 		{
@@ -122,6 +123,23 @@ namespace ViruZLauncher.Launcher.Interface
 			// Set the window title
 			this.Title = LocalizationCatalog.GetString("{0}", this.Configuration.GameName);
 			this.StatusLabel.Text = LocalizationCatalog.GetString("Idle");
+
+			/*
+			Gdk.RGBA color = default(RGBA);
+			color.Parse("red");
+			NewChangeName.OverrideBackgroundColor(StateFlags.Normal, color);
+			*/
+
+			Gdk.Color fgcol = new Gdk.Color(255, 255, 255);
+
+			// MainProgressBar.ModifyBg(StateType.Normal, fgcol);
+			MainProgressBar.OverrideBackgroundColor(StateFlags.Normal, RGBA.Zero);
+			MainProgressBar.ModifyFg(StateType.Normal, fgcol);
+
+			TopMenuBar.ModifyFg(StateType.Normal, fgcol);
+
+			NewChangeName.ModifyBg(StateType.Normal, fgcol);
+			//NewChangeName.ModifyFg(StateType.Normal, fgcol);
 		}
 
 		/// <summary>
@@ -157,7 +175,7 @@ namespace ViruZLauncher.Launcher.Interface
 			{
 				LoadBanner();
 
-				LoadChangelog();
+				// LoadChangelog(); // ViruZ NoChangelog
 
 				// If we can connect, proceed with the rest of our checks.
 				if (ChecksHandler.IsInitialStartup())
@@ -222,7 +240,8 @@ namespace ViruZLauncher.Launcher.Interface
 			return Task.CompletedTask;
 		}
 
-		private void LoadChangelog()
+		// ViurZ NoChangelog
+		/*private void LoadChangelog()
 		{
 			var protocol = PatchProtocolProvider.GetHandler();
 			var markup = protocol.GetChangelogMarkup();
@@ -237,7 +256,7 @@ namespace ViruZLauncher.Launcher.Interface
 
 			var startIter = this.ChangelogTextView.Buffer.StartIter;
 			this.ChangelogTextView.Buffer.InsertMarkup(ref startIter, markup);
-		}
+		}*/
 
 		private void DisplayInitialStartupDialog()
 		{
@@ -457,6 +476,24 @@ namespace ViruZLauncher.Launcher.Interface
 
 			// Simulate a button press from the user.
 			this.MainButton.Click();
+		}
+
+		private void OnNewChangeNameClicked(object sender, EventArgs e)
+		{
+			// Or specify a specific name in the current dir
+			string value = "ViruZ Player";
+			if (InputBox.Show("Change Name", "Enter the new name:", ref value, validation) == DialogResult.OK)
+			{
+				var myIniFile = System.IO.Path.Combine(DirectoryHelpers.GetLocalGameDirectory(), Configuration.IniPath);
+				if (!File.Exists(myIniFile))
+				{
+					throw new FileNotFoundException($"file ini at path (\"{myIniFile}\") not found.");
+				}
+				var myIniDir = System.IO.Path.GetDirectoryName(myIniFile) ?? DirectoryHelpers.GetLocalLauncherDirectory();
+				var MyIni = new IniFile(myIniFile.ToString());
+				MyIni.Write("CommandLine", " -name=" + value, "Launcher");
+				MessageBox.Show("Name changed to " + value);
+			}
 		}
 
 		/// <summary>

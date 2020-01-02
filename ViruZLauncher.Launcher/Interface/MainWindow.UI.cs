@@ -47,13 +47,15 @@ namespace ViruZLauncher.Launcher.Interface
 		[UIElement] private readonly ImageMenuItem MenuReinstallItem;
 		[UIElement] private readonly ImageMenuItem MenuAboutItem;
 
-		[UIElement] private readonly TextView ChangelogTextView;
+		// [UIElement] private readonly TextView ChangelogTextView; // ViruZ NoChangelog
 		[UIElement] private readonly Image BannerImage;
 
 		[UIElement] private readonly Label StatusLabel;
 
 		[UIElement] private readonly ProgressBar MainProgressBar;
 		[UIElement] private readonly Button MainButton;
+		[UIElement] private readonly Button NewChangeName;
+		[UIElement] private readonly MenuBar TopMenuBar;
 
 		/// <summary>
 		/// Creates a new instance of the <see cref="MainWindow"/> class, loading its interface definition from file.
@@ -84,6 +86,7 @@ namespace ViruZLauncher.Launcher.Interface
 			this.MenuAboutItem.Activated += OnMenuAboutItemActivated;
 
 			this.MainButton.Clicked += OnMainButtonClicked;
+			this.NewChangeName.Clicked += OnNewChangeNameClicked;
 		}
 
 		/// <summary>
