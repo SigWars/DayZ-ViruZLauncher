@@ -2,9 +2,9 @@
 //  GameArgumentService.cs
 //
 //  Author:
-//       Jarl Gullberg <jarl.gullberg@gmail.com>
+//      SigWar
 //
-//  Copyright (c) 2017 Jarl Gullberg
+//  Copyright (c) 2020 ViruZ Standalone
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -70,7 +70,7 @@ namespace ViruZLauncher.Launcher.Services
 					sw.WriteLine("-connect=viruzconnect.servegame.com");
 					sw.WriteLine("-port=2302");
 					sw.WriteLine("-noFilePatching");
-					sw.WriteLine("-mod=Mods\\@ViruZBase;" +
+					sw.WriteLine("-mod=Mods\\@ViruZBasic;" +
 								"Mods\\@CF;" +
 								"Mods\\@VPPNotifications;" +
 								"Mods\\@VPPAdminTools;" +

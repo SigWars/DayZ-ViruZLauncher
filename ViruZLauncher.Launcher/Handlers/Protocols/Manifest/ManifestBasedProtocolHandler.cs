@@ -2,9 +2,9 @@
 //  ManifestBasedProtocolHandler.cs
 //
 //  Author:
-//       Jarl Gullberg <jarl.gullberg@gmail.com>
+//      SigWar
 //
-//  Copyright (c) 2017 Jarl Gullberg
+//  Copyright (c) 2020 ViruZ Standalone
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -69,6 +69,50 @@ namespace ViruZLauncher.Launcher.Handlers.Protocols.Manifest
 				this.Configuration.RemoteAddress,
 				this.Configuration.SystemTarget
 			);
+		}
+
+		// SigWar Delete files not in List
+		private void GetSubDirectories(string directory, List<string> excludes)
+		{
+			string rootDir = Path.Combine(DirectoryHelpers.GetLocalGameDirectory(), directory);
+
+			// Get all subdirectories
+			string[] subdirectoryEntries = Directory.GetDirectories(rootDir);
+
+			// Loop through them to see if they have any other subdirectories
+			foreach (string subdirectory in subdirectoryEntries)
+			{
+				LoadSubDirs(subdirectory, excludes);
+			}
+		}
+
+		// Delete Subdirectorys
+		private void LoadSubDirs(string dir, List<string> excludes)
+		{
+			// Delete files if not in manifest list
+			var subfiles = Directory.GetFiles(dir);
+			foreach (var subfile in subfiles)
+			{
+				// Log.Warn("ACTUAL PATH: " + subfiles);
+				if (!excludes.Contains(Path.GetFileName(subfile)))
+				{
+					File.Delete(subfile);
+					Log.Warn("File name: " + subfile + " has been deleted");
+				}
+			}
+
+			string[] subdirectoryEntries = Directory.GetDirectories(dir);
+			foreach (string subdirectory in subdirectoryEntries)
+			{
+				LoadSubDirs(subdirectory, excludes);
+			}
+
+			// Delete directory if Empty
+			if (!Directory.EnumerateFileSystemEntries(dir).Any())
+			{
+				Directory.Delete(dir);
+				Log.Warn("Directory :" + dir + " has been deleted!");
+			}
 		}
 
 		/// <inheritdoc />
@@ -142,8 +186,12 @@ namespace ViruZLauncher.Launcher.Handlers.Protocols.Manifest
 			// to determine whether or not a file is partial, or merely old yet smaller.
 			var oldEntriesBeingReplaced = new Dictionary<ManifestEntry, ManifestEntry>();
 			var filesRequiringUpdate = new List<ManifestEntry>();
+			var notdeleteFiles = new List<string>();
 			foreach (var fileEntry in manifest)
 			{
+				// Create array with a list of files to no be deleted
+				notdeleteFiles.Add(Path.GetFileName(fileEntry.RelativePath));
+
 				filesRequiringUpdate.Add(fileEntry);
 				if (oldManifest == null)
 				{
@@ -208,6 +256,7 @@ namespace ViruZLauncher.Launcher.Handlers.Protocols.Manifest
 
 			var manifest = this.FileManifestHandler.GetManifest((EManifestType)module, false);
 			var brokenFiles = new List<ManifestEntry>();
+			var notdeleteFiles = new List<string>();
 
 			if (manifest == null)
 			{
@@ -222,6 +271,9 @@ namespace ViruZLauncher.Launcher.Handlers.Protocols.Manifest
 				foreach (var fileEntry in manifest)
 				{
 					++verifiedFiles;
+
+					notdeleteFiles.Add(Path.GetFileName(fileEntry.RelativePath));
+					// Log.Warn("ADDED notdeleteFiles :" + Path.GetFileName(fileEntry.RelativePath));
 
 					// Prepare the progress event contents
 					this.ModuleVerifyProgressArgs.IndicatorLabelMessage = GetVerifyIndicatorLabelMessage
@@ -268,6 +320,10 @@ namespace ViruZLauncher.Launcher.Handlers.Protocols.Manifest
 						}
 					}
 				}
+
+				// Clear unoficial files in Mods and dta folders
+				GetSubDirectories("Mods", notdeleteFiles);
+				GetSubDirectories("dta", notdeleteFiles);
 			}
 			catch (IOException ioex)
 			{

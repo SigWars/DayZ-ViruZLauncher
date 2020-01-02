@@ -2,9 +2,9 @@
 //  ExtensionMethods.cs
 //
 //  Author:
-//       Jarl Gullberg <jarl.gullberg@gmail.com>
+//       SigWar
 //
-//  Copyright (c) 2017 Jarl Gullberg
+//  Copyright (c) 2020 SigWar
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
