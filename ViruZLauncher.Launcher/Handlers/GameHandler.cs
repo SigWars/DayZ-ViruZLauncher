@@ -157,8 +157,17 @@ namespace ViruZLauncher.Launcher.Handlers
 			Log.Info("Beginning full reinstall of game files.");
 			if (Directory.Exists(DirectoryHelpers.GetLocalGameDirectory()))
 			{
-				Log.Info("Deleting existing game files.");
-				Directory.Delete(DirectoryHelpers.GetLocalGameDirectory(), true);
+				string notDeldir = Path.Combine(DirectoryHelpers.GetLocalGameDirectory(), "Addons");
+				string notDeldir2 = Path.Combine(DirectoryHelpers.GetLocalGameDirectory(), "bliss");
+
+				foreach (string delDir in Directory.GetDirectories(DirectoryHelpers.GetLocalGameDirectory()))
+				{
+					if (delDir != notDeldir && delDir != notDeldir2)
+					{
+						Log.Info("Deleting existing game files in " + delDir);
+						Directory.Delete(delDir, true);
+					}
+				}
 			}
 
 			if (File.Exists(DirectoryHelpers.GetGameTagfilePath()))

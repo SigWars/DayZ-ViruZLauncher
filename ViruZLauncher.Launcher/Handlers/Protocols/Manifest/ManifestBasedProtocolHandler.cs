@@ -90,14 +90,21 @@ namespace ViruZLauncher.Launcher.Handlers.Protocols.Manifest
 		private void LoadSubDirs(string dir, List<string> excludes)
 		{
 			// Delete files if not in manifest list
+			var addondir = Path.Combine(DirectoryHelpers.GetLocalGameDirectory(), "Addons");
+			var addondir2 = Path.Combine(DirectoryHelpers.GetLocalGameDirectory(), "bliss");
+
 			var subfiles = Directory.GetFiles(dir);
 			foreach (var subfile in subfiles)
 			{
 				// Log.Warn("ACTUAL PATH: " + subfiles);
 				if (!excludes.Contains(Path.GetFileName(subfile)))
 				{
-					File.Delete(subfile);
-					Log.Warn("File name: " + subfile + " has been deleted");
+					Log.Warn("DIRNAME :" + Path.GetDirectoryName(subfile));
+					if (Path.GetDirectoryName(subfile) != addondir && Path.GetDirectoryName(subfile) != addondir2)
+					{
+						File.Delete(subfile);
+						Log.Warn("File name: " + subfile + " has been deleted");
+					}
 				}
 			}
 
@@ -110,8 +117,11 @@ namespace ViruZLauncher.Launcher.Handlers.Protocols.Manifest
 			// Delete directory if Empty
 			if (!Directory.EnumerateFileSystemEntries(dir).Any())
 			{
-				Directory.Delete(dir);
-				Log.Warn("Directory :" + dir + " has been deleted!");
+				// if (!dir.Contains(addondir))
+				// {
+					Directory.Delete(dir);
+					Log.Warn("Directory :" + dir + " has been deleted!");
+				// }
 			}
 		}
 

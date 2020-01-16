@@ -81,7 +81,7 @@ namespace ViruZLauncher.Launcher.Interface
 		{
 			this.DeleteEvent += OnDeleteEvent;
 			this.MenuChangeName.Activated += OnMenuChangeNameActivated; // VZUPDATE
-			this.MenuReinstallItem.Activated += OnReinstallGameActionActivated;
+			this.MenuReinstallItem.Activated += OnReinstallGameActionActivated; //Enable install function again
 			this.MenuRepairItem.Activated += OnMenuRepairItemActivated;
 			this.MenuAboutItem.Activated += OnMenuAboutItemActivated;
 

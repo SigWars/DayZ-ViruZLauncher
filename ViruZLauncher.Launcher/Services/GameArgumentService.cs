@@ -84,7 +84,8 @@ namespace ViruZLauncher.Launcher.Services
 								"Mods\\@ViruZExtraAddons;" +
 								"Mods\\@ViruZCars;" +
 								"Mods\\@ViruZWeapons;" +
-								"Mods\\@Summer");
+								"Mods\\@Testes;" +
+								"Mods\\@SummerChernarus");
 					sw.WriteLine(string.Empty);
 				}
 			}
