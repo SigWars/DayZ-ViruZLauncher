@@ -38,4 +38,3 @@ If you're not a developer, but want to contribute anyway, or if you just want to
 
 ## Code contributors
 * SigWar
-* Mateuus
